@@ -1,0 +1,26 @@
+{
+  "groups": [
+    {
+      "name": "management.endpoint.rates",
+      "type": "ru.spring.demo.reactive.starter.metrics.RatesMetricsEndpoint",
+      "sourceType": "ru.spring.demo.reactive.starter.metrics.RatesMetricsEndpoint"
+    }
+  ],
+  "properties": [
+    {
+      "name": "management.endpoint.rates.cache.time-to-live",
+      "type": "java.time.Duration",
+      "description": "Maximum time that a response can be cached.",
+      "sourceType": "ru.spring.demo.reactive.starter.metrics.RatesMetricsEndpoint",
+      "defaultValue": "0ms"
+    },
+    {
+      "name": "management.endpoint.rates.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Whether to enable the rates endpoint.",
+      "sourceType": "ru.spring.demo.reactive.starter.metrics.RatesMetricsEndpoint",
+      "defaultValue": true
+    }
+  ],
+  "hints": []
+}

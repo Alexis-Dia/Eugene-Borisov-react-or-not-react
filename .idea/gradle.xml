@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/agent-smith-service" />
+            <option value="$PROJECT_DIR$/big-brother-service" />
+            <option value="$PROJECT_DIR$/console-dashboard" />
+            <option value="$PROJECT_DIR$/metrics-starter" />
+            <option value="$PROJECT_DIR$/pechkin-service" />
+            <option value="$PROJECT_DIR$/speed-adjuster-starter" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

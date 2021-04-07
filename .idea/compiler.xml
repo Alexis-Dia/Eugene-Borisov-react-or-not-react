@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.6/616105b0831250a2e443447508e6a8b26bc466fb/lombok-1.18.6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/2.1.3.RELEASE/e69151ab9dbce915b5e9b278890eab297808aa18/spring-boot-configuration-processor-2.1.3.RELEASE.jar" />
+        </processorPath>
+        <module name="Eugene-Borisov-react-or-not-react.agent-smith-service.test" />
+        <module name="Eugene-Borisov-react-or-not-react.console-dashboard.test" />
+        <module name="Eugene-Borisov-react-or-not-react.pechkin-service.main" />
+        <module name="Eugene-Borisov-react-or-not-react.metrics-starter.test" />
+        <module name="Eugene-Borisov-react-or-not-react.pechkin-service.test" />
+        <module name="Eugene-Borisov-react-or-not-react.big-brother-service.test" />
+        <module name="Eugene-Borisov-react-or-not-react.speed-adjuster-starter.main" />
+        <module name="Eugene-Borisov-react-or-not-react.console-dashboard.main" />
+        <module name="Eugene-Borisov-react-or-not-react.agent-smith-service.main" />
+        <module name="Eugene-Borisov-react-or-not-react.metrics-starter.main" />
+        <module name="Eugene-Borisov-react-or-not-react.big-brother-service.main" />
+        <module name="Eugene-Borisov-react-or-not-react.speed-adjuster-starter.test" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="11" />
+  </component>
+</project>

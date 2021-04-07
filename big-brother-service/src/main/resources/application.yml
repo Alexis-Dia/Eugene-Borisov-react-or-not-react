@@ -1,0 +1,20 @@
+datasender:
+  slow-multiplier: 1
+  letter-processor-concurrency-level: 8
+  url: http://localhost:8080/request
+
+server:
+  port: 8081
+logging:
+  level:
+    root: info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  devtools:
+    livereload:
+      port: 10501

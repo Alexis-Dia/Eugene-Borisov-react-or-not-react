@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "dashboard",
+      "type": "ru.spring.demo.reactive.dashboard.console.DashboardProperties",
+      "sourceType": "ru.spring.demo.reactive.dashboard.console.DashboardProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "dashboard.guard-url",
+      "type": "java.lang.String",
+      "sourceType": "ru.spring.demo.reactive.dashboard.console.DashboardProperties"
+    },
+    {
+      "name": "dashboard.letter-grabber-url",
+      "type": "java.lang.String",
+      "sourceType": "ru.spring.demo.reactive.dashboard.console.DashboardProperties"
+    },
+    {
+      "name": "dashboard.letter-signature-url",
+      "type": "java.lang.String",
+      "sourceType": "ru.spring.demo.reactive.dashboard.console.DashboardProperties"
+    }
+  ],
+  "hints": []
+}
