@@ -29,6 +29,9 @@ public class LetterProducer {
         return randomLetter();
     }
 
+    public Flux<Letter> letterFlux() {
+        return Flux.<Letter>generate(letterSynchronousSink -> letterSynchronousSink.next(randomLetter()));
+    }
     private Letter randomLetter() {
         String character = faker.character();
         return Letter.builder()

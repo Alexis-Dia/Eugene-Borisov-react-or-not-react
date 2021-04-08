@@ -8,11 +8,14 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import ru.spring.demo.reactive.pechkin.producer.LetterProducer;
 import ru.spring.demo.reactive.starter.speed.AdjustmentProperties;
 import ru.spring.demo.reactive.starter.speed.model.Letter;
+import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.Duration;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class LetterDistributor {
     private final LetterSender         sender;
     private final AdjustmentProperties adjustmentProperties;
+    private final WebClient.Builder webClientBuilder;
     private final LetterProducer       producer;
     private final Counter              counter;
     private final ThreadPoolExecutor   letterProcessorExecutor;
@@ -30,12 +34,13 @@ public class LetterDistributor {
     public LetterDistributor(
             LetterSender sender,
             AdjustmentProperties adjustmentProperties,
-            LetterProducer producer,
+            WebClient.Builder webClientBuilder, LetterProducer producer,
             MeterRegistry meterRegistry,
             ThreadPoolExecutor letterProcessorExecutor,
             ObjectMapper objectMapper) {
         this.sender = sender;
         this.adjustmentProperties = adjustmentProperties;
+        this.webClientBuilder = webClientBuilder;
         this.producer = producer;
         this.counter = meterRegistry.counter("letter.rps");
         this.letterProcessorExecutor = letterProcessorExecutor;
@@ -46,21 +51,24 @@ public class LetterDistributor {
     @EventListener(ApplicationStartedEvent.class)
     public void init() {
         while (true) {
-            if(adjustmentProperties.getRequest() > 0) {
-                distribute();
-                counter.increment();
-            } else {
-                TimeUnit.MILLISECONDS.sleep(200);
-            }
+            distribute();
+            counter.increment();
         }
     }
 
     @SneakyThrows
     public void distribute() {
-        Letter letter = producer.getLetter();
-        log.debug("letter = " + letter);
-        sender.send(letter);
-        //adjustmentProperties.getRequest().getAndDecrement();
-        adjustmentProperties.setRequest(adjustmentProperties.getRequest() - 1);
+        webClientBuilder.baseUrl("http://localhost:8081/").build()
+                .post().uri("/analyse/letter")
+                .contentType(MediaType.APPLICATION_STREAM_JSON)
+                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .body(
+                        producer.letterFlux().log(),
+                        Letter.class)
+                .exchange()
+                .doOnError(throwable -> log.error("Sth went wrong {}", throwable.getMessage()))
+                .retryBackoff(Long.MAX_VALUE, Duration.ofMillis(500))
+                .log()
+                .subscribe(clientResponse -> log.info("clientResponse = ", clientResponse));
     }
 }
